@@ -1,0 +1,17 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+
+    // This value can be externalized in a Custom Setting
+    <aura:attribute name="vfHost" type="String" default="momentum-efficiency-4004-dev-ed--c.cs46.visual.force.com"/>
+    <aura:attribute name="count" type="Integer" default="2"/>
+    <aura:attribute name="vfResponse" type="String" default=""/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:card title="Calling Apex Continuation">
+        <lightning:input type="text" label="Count:" value="{!v.count}"/>
+        <lightning:button label="Call Service with Continuation from VF" onclick="{!c.sendToVF}"/>
+        <lightning:textArea label="Continuation Result Received from VF:" value="{!v.vfResponse}"/>
+        <iframe aura:id="vfFrame" src="{!'https://' + v.vfHost + '/apex/WrappedVF'}" frameborder="0" width="100%" height="200"/>
+    </lightning:card>
+    
+</aura:component>
