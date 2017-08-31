@@ -1,4 +1,4 @@
-global class MyController {
+global with sharing class MyController {
 
     // This value can be externalized in a Custom Setting
     global static String lcOrigin = 'https://momentum-efficiency-4004-dev-ed.lightning.force.com';
