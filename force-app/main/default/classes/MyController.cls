@@ -1,8 +1,15 @@
 global class MyController {
 
+    global static String lcOrigin = 'https://momentum-efficiency-4004-dev-ed.lightning.force.com';
+    
+    public MyController() {
+        Apexpages.currentPage().getHeaders().put('X-Frame-Options', lcOrigin);
+    }
+
     // Called via JavaScript Remoting
     @RemoteAction
     global static Object callService(Integer count){
+
         // Make an HTTPRequest as we normally would
         // Remember to configure a Remote Site Setting for the service!
         String url = 'https://node-count.herokuapp.com/'+count;

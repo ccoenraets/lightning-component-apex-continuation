@@ -1,6 +1,6 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global">
 
-    // This value can be externalized in a Custom Setting
+    <!-- This value can be externalized in a Custom Setting -->
     <aura:attribute name="vfHost" type="String" default="momentum-efficiency-4004-dev-ed--c.cs46.visual.force.com"/>
     <aura:attribute name="count" type="Integer" default="2"/>
     <aura:attribute name="vfResponse" type="String" default=""/>
