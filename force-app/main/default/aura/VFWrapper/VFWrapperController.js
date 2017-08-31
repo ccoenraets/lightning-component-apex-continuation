@@ -8,7 +8,7 @@
 			}
 			// Only handle messages we are interested in
 			if (event.data.name === "com.mycompany.chatmessage") {
-				vfResponse = event.data.payload;
+				var vfResponse = event.data.payload;
 				component.set("v.vfResponse", vfResponse);
 			}
 		}, false);
