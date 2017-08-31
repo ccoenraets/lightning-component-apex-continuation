@@ -5,6 +5,7 @@ global with sharing class MyController {
     
     public MyController() {
         Apexpages.currentPage().getHeaders().put('X-Frame-Options', 'ALLOW-FROM ' + lcOrigin);
+        Apexpages.currentPage().getHeaders().put('Content-Security-Policy', 'frame-ancestors ' + lcOrigin);
     }
 
     // Called via JavaScript Remoting
