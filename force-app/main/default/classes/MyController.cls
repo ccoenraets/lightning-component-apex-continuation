@@ -4,7 +4,7 @@ global class MyController {
     global static String lcOrigin = 'https://momentum-efficiency-4004-dev-ed.lightning.force.com';
     
     public MyController() {
-        Apexpages.currentPage().getHeaders().put('X-Frame-Options', lcOrigin);
+        Apexpages.currentPage().getHeaders().put('X-Frame-Options', 'ALLOW-FROM ' + lcOrigin);
     }
 
     // Called via JavaScript Remoting
