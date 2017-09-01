@@ -1,9 +1,9 @@
-global with sharing class MyController {
+global with sharing class SimpleContinuationController {
 
     // This value can be externalized in a Custom Setting or calculated based on the VF URL
     global static String lcOrigin = 'https://momentum-efficiency-4004-dev-ed.lightning.force.com';
     
-    public MyController() {
+    public SimpleContinuationController() {
         Apexpages.currentPage().getHeaders().put('X-Frame-Options', 'ALLOW-FROM ' + lcOrigin);
         Apexpages.currentPage().getHeaders().put('Content-Security-Policy', 'frame-ancestors ' + lcOrigin);
     }

@@ -1,5 +1,5 @@
 <apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0"
- controller="MyController">
+ controller="SimpleContinuationController">
 	<html>
 
 	<body style="background-color: #F0F2F5">
@@ -34,7 +34,7 @@
 				if (event.data.name === "com.mycompany.chatmessage") {
 					var count = event.data.payload;
 					countEl.value = count;
-					Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.MyController.callService}', count, handleResult);
+					Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.SimpleContinuationController.callService}', count, handleResult);
 				}
 			}, false);
 

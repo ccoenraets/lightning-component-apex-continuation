@@ -11,7 +11,7 @@
         <lightning:input type="text" label="Count:" value="{!v.count}"/>
         <lightning:button label="Call Service with Continuation from VF" onclick="{!c.sendToVF}"/>
         <lightning:textArea label="Continuation Result Received from VF:" value="{!v.vfResponse}"/>
-        <iframe aura:id="vfFrame" src="{!'https://' + v.vfHost + '/apex/WrappedVF'}" frameborder="0" width="100%" height="200"/>
+        <iframe aura:id="vfFrame" src="/apex/SimpleContinuation" frameborder="0" width="100%" height="200"/>
     </lightning:card>
     
 </aura:component>
