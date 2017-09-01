@@ -1,0 +1,16 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="ContinuationController" access="global">
+
+    <aura:attribute name="topic" type="String" default="com.mycompany.message" access="global" />
+    <aura:attribute name="vfBaseURL" type="String" />
+
+    <aura:method name="invoke" action="{!c.doInvoke}">
+        <aura:attribute name="methodName" type="String" />
+        <aura:attribute name="methodParams" type="Object" />
+        <aura:attribute name="callback" type="Object" />
+    </aura:method>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <iframe aura:id="vfFrame" src="/apex/ContinuationProxy" frameborder="0" width="1" height="1" />
+
+</aura:component>

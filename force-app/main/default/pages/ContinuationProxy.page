@@ -1,0 +1,39 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0"
+    controller="ContinuationController">
+    <html>
+
+    <body>
+
+        <script>
+
+            var hostname = window.location.hostname;
+            var mydomain = hostname.substr(0, hostname.indexOf("--c"));
+            var lexBaseURL = "https://" + mydomain + ".lightning.force.com";
+
+            window.addEventListener("message", function (event) {
+                if (event.origin !== lexBaseURL) {
+                    // Not the expected origin: reject message
+                    return;
+                }
+
+                // Only handle messages we are interested in            
+                if (event.data.topic === "com.mycompany.message") {
+                    var methodName = event.data.methodName;
+                    var methodParams = event.data.methodParams;
+                    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.ContinuationController.invoke}', methodName, methodParams, function (result) {
+                        var message = {
+                            invocationId: event.data.invocationId,
+                            topic: "com.mycompany.message",
+                            result: result
+                        };
+                        parent.postMessage(message, lexBaseURL);
+                    });
+                }
+            }, false);
+        </script>
+
+    </body>
+
+    </html>
+
+</apex:page>

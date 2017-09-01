@@ -12,6 +12,9 @@
         <componentInstances>
             <componentName>VFWrapper</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>ContinuationDemo</componentName>
+        </componentInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>

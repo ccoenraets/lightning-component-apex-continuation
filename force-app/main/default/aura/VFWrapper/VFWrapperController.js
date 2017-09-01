@@ -15,7 +15,8 @@
 	},
 
 	sendToVF : function(component, event, helper) {
-        var vfOrigin = "https://" + component.get("v.vfHost");
+		var vfOrigin = "https://" + component.get("v.vfHost");
+		alert(vfOrigin);
 		var vfWindow = component.find("vfFrame").getElement().contentWindow;
 		var message = {
 			name: "com.mycompany.chatmessage",
