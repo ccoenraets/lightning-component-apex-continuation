@@ -1,66 +1,37 @@
 <apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0"
- controller="SimpleContinuationController">
+ 			controller="SimpleContinuationController">
+
 	<html>
 
-	<body style="background-color: #F0F2F5">
-		<strong>This gray area is Visualforce page embedded in the Lightning Component with an iframe. Values are shown here for information only: This page would typically have no UI. </strong>
-
-		<div class="slds-form-element">
-			<label class="slds-form-element__label" for="count">Count (received from Lightning Component):</label>
-			<div class="slds-form-element__control">
-				<input id="count" class="slds-input" type="text" />
-			</div>
-		</div>
-		<div class="slds-form-element">
-			<label class="slds-form-element__label" for="lcMessages">Continuation response (to be sent to Lightning Component):</label>
-			<div class="slds-form-element__control">
-				<textarea class="slds-textarea" id="result" rows="5"></textarea>
-			</div>
-		</div>
+	<head>
 
 		<script>
-			// This value can be externalized in a Custom Setting
-			var lexOrigin = "https://momentum-efficiency-4004-dev-ed.lightning.force.com";
+			var lcBaseURL = "https://momentum-efficiency-4004-dev-ed.lightning.force.com";
 
-			var countEl = document.getElementById("count");
-			var resultEl = document.getElementById("result");
-
+			// Listen for messages from the Lightning Component
 			window.addEventListener("message", function (event) {
-				if (event.origin !== lexOrigin) {
+				if (event.origin !== lcBaseURL) {
 					// Not the expected origin: reject message
 					return;
 				}
 				// Only handle messages we are interested in            
-				if (event.data.name === "com.mycompany.chatmessage") {
+				if (event.data.topic === "com.mycompany.message") {
 					var count = event.data.payload;
-					countEl.value = count;
-					Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.SimpleContinuationController.callService}', count, handleResult);
+					Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.SimpleContinuationController.callService}', count, function (result) {
+						// Send result to Lightning Component
+						var message = {
+							topic: "com.mycompany.message",
+							result: result
+						};
+						parent.postMessage(message, lcBaseURL);
+					});
 				}
 			}, false);
 
-			function sendToLC() {
-				var payload = document.getElementById("message").value;
-				var message = {
-					name: "com.mycompany.chatmessage",
-					payload: payload
-				};
-				parent.postMessage(message, lexOrigin);
-			}
-
-			function handleResult(result, event) {
-				resultEl.value = result;
-				var message = {
-					name: "com.mycompany.chatmessage",
-					payload: result
-				};
-				parent.postMessage(message, lexOrigin);
-				console.log(result);
-				console.log(event);
-			}
-
 		</script>
 
-	</body>
+	</head>
 
 	</html>
+
 </apex:page>

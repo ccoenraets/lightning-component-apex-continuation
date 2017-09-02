@@ -1,27 +1,27 @@
 ({
-    doInit : function(component, event, helper) {
-        var vfOrigin = "https://" + component.get("v.vfHost");
-		window.addEventListener("message", function(event) {
-			if (event.origin !== vfOrigin) {
+	doInit: function (component, event, helper) {
+		var vfBaseURL = "https://" + component.get("v.vfHost");
+		// Listen for messages posted by the iframed VF page
+		window.addEventListener("message", function (event) {
+			if (event.origin !== vfBaseURL) {
 				// Not the expected origin: reject message
 				return;
 			}
 			// Only handle messages we are interested in
-			if (event.data.name === "com.mycompany.chatmessage") {
-				var vfResponse = event.data.payload;
-				component.set("v.vfResponse", vfResponse);
+			if (event.data.topic === "com.mycompany.message") {
+				var result = event.data.result;
+				component.set("v.result", result);
 			}
 		}, false);
 	},
 
-	sendToVF : function(component, event, helper) {
-		var vfOrigin = "https://" + component.get("v.vfHost");
-		alert(vfOrigin);
-		var vfWindow = component.find("vfFrame").getElement().contentWindow;
+	callService: function (component, event, helper) {
+		var vfBaseURL = "https://" + component.get("v.vfHost");
+		var vf = component.find("vfFrame").getElement().contentWindow;
 		var message = {
-			name: "com.mycompany.chatmessage",
+			topic: "com.mycompany.message",
 			payload: component.get("v.count")
 		};
-        vfWindow.postMessage(message, vfOrigin);
+		vf.postMessage(message, vfBaseURL);
 	}
 })

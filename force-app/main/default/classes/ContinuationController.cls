@@ -10,8 +10,11 @@ global with sharing class ContinuationController {
 
     @AuraEnabled
     public static String getVFBaseURL() {
-        List<String> fragments = URL.getSalesforceBaseUrl().getHost().split('\\.');
-        return 'https://' + fragments[0] + '--c.' + fragments[1] + '.visual.force.com';
+        User user = [SELECT fullPhotoUrl FROM User WHERE userType = 'Standard' LIMIT 1]; 
+        // The above query returns a URL like https://my-domain-dev-ed--c.na50.content.force.com/profilephoto/001/A
+        // Let's use the two first fragment of that URL to create the VF base URL 
+        List<String> fragments = user.fullPhotoUrl.split('\\.');
+        return fragments[0] + '.' + fragments[1] + '.visual.force.com';
     }
 
     // Called via JavaScript Remoting
