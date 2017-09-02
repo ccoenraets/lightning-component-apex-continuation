@@ -12,7 +12,7 @@ global with sharing class ContinuationController {
     public static String getVFBaseURL() {
         User user = [SELECT fullPhotoUrl FROM User WHERE userType = 'Standard' LIMIT 1]; 
         // The above query returns a URL like https://my-domain-dev-ed--c.na50.content.force.com/profilephoto/001/A
-        // Let's use the two first fragment of that URL to create the VF base URL 
+        // Let's use the two first fragments of that URL to create the VF base URL 
         List<String> fragments = user.fullPhotoUrl.split('\\.');
         return fragments[0] + '.' + fragments[1] + '.visual.force.com';
     }
