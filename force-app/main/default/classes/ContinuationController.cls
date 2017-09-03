@@ -4,8 +4,9 @@ global with sharing class ContinuationController {
         String hostname = URL.getSalesforceBaseUrl().getHost();
         String mydomain = hostname.substring(0, hostname.indexOf('--c'));
         String lcBaseURL = 'https://' + mydomain + '.lightning.force.com';
-        Apexpages.currentPage().getHeaders().put('X-Frame-Options', 'ALLOW-FROM ' + lcBaseURL);
-        Apexpages.currentPage().getHeaders().put('Content-Security-Policy', 'frame-ancestors ' + lcBaseURL);
+        Map<String, String> headers = Apexpages.currentPage().getHeaders();	
+        headers.put('X-Frame-Options', 'ALLOW-FROM ' + lcBaseURL);
+        headers.put('Content-Security-Policy', 'frame-ancestors ' + lcBaseURL);
     }
 
     @AuraEnabled
@@ -24,7 +25,7 @@ global with sharing class ContinuationController {
         if (methodName == 'getProducts') {
             // Make an HTTPRequest as we normally would
             // Remember to configure a Remote Site Setting for the service!
-            String url = 'https://long-running.herokuapp.com/products?duration=' + params[0];
+            String url = 'https://long-running.herokuapp.com/products?latency=' + params[0];
             HttpRequest req = new HttpRequest();
             req.setMethod('GET');
             req.setEndpoint(url);
@@ -39,7 +40,7 @@ global with sharing class ContinuationController {
         } else if (methodName == 'getProduct') {
             // Make an HTTPRequest as we normally would
             // Remember to configure a Remote Site Setting for the service!
-            String url = 'https://long-running.herokuapp.com/products/' + params[0] + '?duration=' + params[1];
+            String url = 'https://long-running.herokuapp.com/products/' + params[0] + '?latency=' + params[1];
             HttpRequest req = new HttpRequest();
             req.setMethod('GET');
             req.setEndpoint(url);

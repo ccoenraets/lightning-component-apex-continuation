@@ -3,13 +3,13 @@
     <!-- This value could be calculated: see ContinuationProxy for an example -->
     <aura:attribute name="vfHost" type="String" default="momentum-efficiency-4004-dev-ed--c.cs46.visual.force.com"/>
     <aura:attribute name="productId" type="Integer" default="1"/>
-    <aura:attribute name="duration" type="Integer" default="2000"/>
+    <aura:attribute name="latency" type="Integer" default="2000"/>
     <aura:attribute name="result" type="String"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <lightning:card title="Simple Apex Continuation Example">
-        <lightning:input type="text" label="Simulated duration (ms):" value="{!v.duration}" />
+        <lightning:input type="text" label="Simulated latency (ms):" value="{!v.latency}" />
         <lightning:input type="text" label="Product Id:" value="{!v.productId}"/>
         <lightning:button label="Get Product" onclick="{!c.getProduct}"/>
         <lightning:textArea label="Result:" value="{!v.result}"/>

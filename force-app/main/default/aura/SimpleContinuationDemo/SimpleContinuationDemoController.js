@@ -22,7 +22,7 @@
 		var message = {
 			topic: "com.mycompany.message",
 			productId: component.get("v.productId"),
-			duration: component.get("v.duration"),
+			latency: component.get("v.latency"),
 		};
 		vf.postMessage(message, vfBaseURL);
 	}

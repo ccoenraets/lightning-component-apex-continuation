@@ -17,8 +17,8 @@
 				// Only handle messages we are interested in            
 				if (event.data.topic === "com.mycompany.message") {
 					var productId = event.data.productId;
-					var duration = event.data.duration;
-					Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.SimpleContinuationController.getProduct}', productId, duration, function (result) {
+					var latency = event.data.latency;
+					Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.SimpleContinuationController.getProduct}', productId, latency, function (result) {
 						// Send result to Lightning Component
 						var message = {
 							topic: "com.mycompany.message",
