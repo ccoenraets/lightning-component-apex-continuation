@@ -1,12 +1,17 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global">
 
-    <aura:attribute name="count" type="Integer" default="2" />
+    <aura:attribute name="productId" type="Integer" default="1" />
+    <aura:attribute name="duration" type="Integer" default="2000" />
     <aura:attribute name="result" type="Object" />
 
     <lightning:card title="ContinuationProxy Demo">
-        <lightning:input type="text" label="Count:" value="{!v.count}" />
-        <lightning:button label="Call Service" onclick="{!c.doInvoke}" />
-        <lightning:textArea label="Continuation Result:" value="{!v.result}" />
+        <lightning:input type="text" label="Simulated duration (ms):" value="{!v.duration}" />
+        <lightning:input type="text" label="Product Id:" value="{!v.productId}" />
+        <lightning:button label="Get Product" onclick="{!c.getProduct}" />
+        <div>
+            <lightning:button label="Get All Products" onclick="{!c.getProducts}" />
+        </div>    
+        <lightning:textArea label="Result:" value="{!v.result}" />
     </lightning:card>
 
     <c:ContinuationProxy aura:id="proxy" />

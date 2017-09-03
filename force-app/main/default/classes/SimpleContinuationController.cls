@@ -10,11 +10,11 @@ global with sharing class SimpleContinuationController {
 
     // Called via JavaScript Remoting
     @RemoteAction
-    global static Object callService(Integer count){
+    global static Object getProduct(Integer productId, Integer duration){
 
         // Make an HTTPRequest as we normally would
         // Remember to configure a Remote Site Setting for the service!
-        String url = 'https://node-count.herokuapp.com/'+count;
+        String url = 'https://long-running.herokuapp.com/products/' + productId + '?duration=' + duration;
         HttpRequest req = new HttpRequest();
         req.setMethod('GET');
         req.setEndpoint(url);

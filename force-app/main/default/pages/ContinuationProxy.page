@@ -17,13 +17,14 @@
                 }
 
                 // Only handle messages we are interested in            
-                if (event.data.topic === "com.mycompany.message") {
+                if (event.data.topic === "com.mycompany.proxydemo") {
                     var methodName = event.data.methodName;
                     var methodParams = event.data.methodParams;
                     Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.ContinuationController.invoke}', methodName, methodParams, function (result) {
+                        console.log(result);
                         var message = {
                             invocationId: event.data.invocationId,
-                            topic: "com.mycompany.message",
+                            topic: "com.mycompany.proxydemo",
                             result: result
                         };
                         parent.postMessage(message, lexBaseURL);

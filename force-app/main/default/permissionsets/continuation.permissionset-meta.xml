@@ -6,4 +6,8 @@
         <tab>Continuation</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <tabSettings>
+        <tab>Continuation_Examples</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

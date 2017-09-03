@@ -10,17 +10,19 @@
 			// Only handle messages we are interested in
 			if (event.data.topic === "com.mycompany.message") {
 				var result = event.data.result;
-				component.set("v.result", result);
+				var plainText = result.replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+				component.set("v.result", plainText);
 			}
 		}, false);
 	},
 
-	callService: function (component, event, helper) {
+	getProduct: function (component, event, helper) {
 		var vfBaseURL = "https://" + component.get("v.vfHost");
 		var vf = component.find("vfFrame").getElement().contentWindow;
 		var message = {
 			topic: "com.mycompany.message",
-			payload: component.get("v.count")
+			productId: component.get("v.productId"),
+			duration: component.get("v.duration"),
 		};
 		vf.postMessage(message, vfBaseURL);
 	}

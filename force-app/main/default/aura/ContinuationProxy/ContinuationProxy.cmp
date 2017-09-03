@@ -1,6 +1,6 @@
 <aura:component controller="ContinuationController" access="global">
 
-    <aura:attribute name="topic" type="String" default="com.mycompany.message" access="global" />
+    <aura:attribute name="topic" type="String" default="com.mycompany.proxydemo" access="global" />
     <aura:attribute name="vfBaseURL" type="String" />
 
     <aura:method name="invoke" action="{!c.doInvoke}">

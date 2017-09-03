@@ -4,23 +4,19 @@
         <componentInstances>
             <componentName>SimpleContinuationDemo</componentName>
         </componentInstances>
+        <name>column1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <componentInstances>
             <componentName>ContinuationProxyDemo</componentName>
         </componentInstances>
-        <name>region1</name>
+        <name>column2</name>
         <type>Region</type>
     </flexiPageRegions>
-    <flexiPageRegions>
-        <name>region2</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <name>region3</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <masterLabel>Continuation</masterLabel>
+    <masterLabel>Continuation Examples</masterLabel>
     <template>
-        <name>flexipage:appHomeTemplateHeaderTwoColumnsLeftSidebar</name>
+        <name>flexipage:appHomeTemplateTwoColumns</name>
     </template>
     <type>AppPage</type>
 </FlexiPage>

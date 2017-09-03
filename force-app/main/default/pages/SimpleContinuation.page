@@ -16,8 +16,9 @@
 				}
 				// Only handle messages we are interested in            
 				if (event.data.topic === "com.mycompany.message") {
-					var count = event.data.payload;
-					Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.SimpleContinuationController.callService}', count, function (result) {
+					var productId = event.data.productId;
+					var duration = event.data.duration;
+					Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.SimpleContinuationController.getProduct}', productId, duration, function (result) {
 						// Send result to Lightning Component
 						var message = {
 							topic: "com.mycompany.message",
