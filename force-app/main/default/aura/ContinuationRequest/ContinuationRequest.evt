@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="methodName" type="String"/>
+    <aura:attribute name="methodParams" type="Object[]"/>
+    <aura:attribute name="callback" type="String"/>
+</aura:event>

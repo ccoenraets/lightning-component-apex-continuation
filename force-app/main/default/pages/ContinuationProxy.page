@@ -21,7 +21,6 @@
                     var methodName = event.data.methodName;
                     var methodParams = event.data.methodParams;
                     Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.ContinuationController.invoke}', methodName, methodParams, function (result) {
-                        console.log(result);
                         var message = {
                             invocationId: event.data.invocationId,
                             topic: "com.mycompany.proxydemo",

@@ -1,0 +1,15 @@
+.THIS .slds-card__body {
+    padding: 8px;
+}
+
+.THIS .slds-form-element {
+    margin: 4px 0;
+}
+
+.THIS textarea {
+    height: 150px;
+}
+
+.THIS button {
+    margin-bottom: 4px;
+}
