@@ -6,7 +6,7 @@
     
     <aura:registerEvent name="continuationRequest" type="c:ContinuationRequest"/>
 
-    <lightning:card title="ContinuationProxy Demo">
+    <lightning:card title="ContinuationBroker Demo">
         <lightning:input type="text" label="Simulated latency (ms):" value="{!v.latency}" />
         <lightning:input type="text" label="Product Id:" value="{!v.productId}" />
         <lightning:button label="Get Product" onclick="{!c.getProduct}" />

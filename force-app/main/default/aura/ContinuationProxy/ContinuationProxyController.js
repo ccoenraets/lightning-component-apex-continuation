@@ -1,6 +1,6 @@
 ({
     doInit: function (component, event, helper) {
-        component.invocationCounter = 0;
+
         component.invocationCallbacks = {};
 
         var action = component.get("c.getVFBaseURL");
@@ -18,8 +18,10 @@
                 if (event.data.topic === topic) {
                     // Retrieve the callback for the specified invocation id
                     var callback = component.invocationCallbacks[event.data.invocationId];
-                    callback(event.data.result);
-                    delete component.invocationCallbacks[event.data.invocationId];
+                    if (callback && typeof callback == 'function') {
+                        callback(event.data.result);
+                        delete component.invocationCallbacks[event.data.invocationId];
+                    }
                 }
             }, false);
         });
@@ -30,11 +32,11 @@
         var vfBaseURL = component.get("v.vfBaseURL");
         var topic = component.get("v.topic");
         var args = event.getParam('arguments');
-        component.invocationCounter = component.invocationCounter + 1;
-        component.invocationCallbacks[component.invocationCounter] = args.callback;
+        var invocationId = helper.getUniqueId();
+        component.invocationCallbacks[invocationId] = args.callback;
         var message = {
             topic: topic,
-            invocationId: component.invocationCounter,
+            invocationId: invocationId,
             methodName: args.methodName,
             methodParams: args.methodParams
         };
