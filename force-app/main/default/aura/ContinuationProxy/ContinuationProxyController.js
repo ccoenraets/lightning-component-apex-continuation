@@ -41,7 +41,7 @@
             methodParams: args.methodParams
         };
         var vf = component.find("vfFrame").getElement().contentWindow;
-        vf.postMessage(message, vfBaseURL);
+        vf.postMessage(JSON.parse(JSON.stringify(message)), vfBaseURL);
     }
 
 })
